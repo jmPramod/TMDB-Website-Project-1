@@ -1,26 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
+import { lazy, Suspense } from 'react';
+import * as React from 'react';
+// import * as ReactDOM from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
+import GenericLoading from './components/GenericLoading';
 
+const LoginPage = lazy(() => import('./components/Login'));
+
+// const RegisterPage = lazy(() => import('./components/Login'));
+const genericLoadingLoader = () => <GenericLoading />;
+const MissingPage = lazy(() => import('./pages/Missing'));
+const CommonPage = lazy(() => import('./pages/CommonPage'));
+const HomePage = lazy(() => import('./pages/Home'));
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <CommonPage />,
+      errorElement: <MissingPage />,
+      loader: genericLoadingLoader,
+      children: [
+        {
+          path: '/home',
+          element: <HomePage />,
+        },
+        {
+          path: '/sign-up',
+          element: <HomePage />,
+        },
+        {
+          path: '/login',
+          element: <LoginPage />,
+        },
+      ],
+    },
+  ]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.StrictMode>
+      <Suspense fallback={<GenericLoading />}>
+        <RouterProvider router={router} />
+      </Suspense>
+    </React.StrictMode>
   );
 }
-
 export default App;
