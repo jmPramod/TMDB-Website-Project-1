@@ -1,16 +1,7 @@
-// import { Close } from '@mui/icons-material';
-// import { Box, Dialog } from '@mui/material';
-// import LoginForm from '../Login/LoginForm';
-// import { styles } from './styles';
+import React from 'react';
 
-interface Props {
-  loginActive?: boolean;
-  setLoginActive?: React.Dispatch<React.SetStateAction<boolean>>;
-  isAlreadyEnrolled?: () => Promise<void>;
-}
-
-const Login = (props: Props) => {
-  return <></>;
+const Login = () => {
+  return <div>Login</div>;
 };
 
 export default Login;

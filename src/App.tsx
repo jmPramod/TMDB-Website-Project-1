@@ -5,13 +5,13 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 import GenericLoading from './components/GenericLoading';
 
-const LoginPage = lazy(() => import('./components/Login'));
+// const LoginPage = lazy(() => import('./components/Login'));
 
 // const RegisterPage = lazy(() => import('./components/Login'));
 const genericLoadingLoader = () => <GenericLoading />;
 const MissingPage = lazy(() => import('./pages/Missing'));
 const CommonPage = lazy(() => import('./pages/CommonPage'));
-const HomePage = lazy(() => import('./pages/Home'));
+// const HomePage = lazy(() => import('./pages/Home'));
 function App() {
   const router = createBrowserRouter([
     {
@@ -22,15 +22,15 @@ function App() {
       children: [
         {
           path: '/home',
-          element: <HomePage />,
+          // element: <HomePage />,
         },
         {
           path: '/sign-up',
-          element: <HomePage />,
+          // element: <HomePage />,
         },
         {
           path: '/login',
-          element: <LoginPage />,
+          // element: <LoginPage />,
         },
       ],
     },

@@ -1,13 +1,20 @@
-import React from 'react';
-
 import { Grid } from '@mui/material';
-
-import {
-  Outlet,
-  // useLocation, useNavigate, useParams
-} from 'react-router-dom';
+import { useEffect } from 'react';
+import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 import NavBar from '../components/NavBar';
-const CommonPage = () => {
+
+type Props = {};
+
+const CommonPage = (props: Props) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { id } = useParams();
+  useEffect(() => {
+    if (location.pathname === '/') {
+      navigate('/home');
+    }
+  }, [location.pathname, navigate, id]);
+
   return (
     <>
       <Grid container alignItems="stretch">
